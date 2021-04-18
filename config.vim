@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() } }
-Plug 'puremourning/vimspector'
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
 Plug 'szw/vim-maximizer'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -68,7 +68,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
  " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename) 
+nmap <space>rn <Plug>(coc-rename) 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -77,9 +77,9 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-if has("gui_macvim")
-    let macvim_hig_shift_movement = 1
-endif
+"if has("gui_macvim")
+"    let macvim_hig_shift_movement = 1
+"endif
 
 " Size tab for every lang
 autocmd filetype javascript setlocal shiftwidth=2 tabstop=2 expandtab
@@ -112,10 +112,17 @@ nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+"Vimspector configuration
+nmap <leader>dd :call vimspector#Launch()<CR>
+nmap <leader>dx :VimspectorReset<CR>
+nmap <leader>de :VimspectorEval
+nmap <leader>dw :VimspectorWatch
+nmap <leader>do :VimspectorShowOutput
 
 "Personal shortcuts
 nmap <silent> nt :NERDTreeFind<CR>
 nmap <silent> s :w<CR>
 nmap <silent>rr ciw
 nmap <silent>cc :CtrlP<CR>
-
+nmap <silent>bb :e#<CR>
+nmap <silent>ff :Files<CR> 
