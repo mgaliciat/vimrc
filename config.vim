@@ -1,4 +1,4 @@
-
+set t_Co=256
 
 call plug#begin('~/.vim/plugged')
 
@@ -8,6 +8,8 @@ Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-
 Plug 'szw/vim-maximizer'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" themes requirements...
 Plug 'alessandroyorba/alduin'
 Plug 'ajh17/spacegray.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -17,12 +19,21 @@ Plug 'severij/vadelma'
 Plug 'flazz/vim-colorschemes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'spacevim/spacevim'
+Plug 'fcpg/vim-orbital'
+Plug 'christophermca/meta5'
+Plug 'owickstrom/vim-colors-paramount'
+Plug 'cocopon/iceberg.vim'
 
+
+" telescope requirements...
+" Plug 'nvim-lua/popup.nviml'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
 "Vim interface settings
-set guifont=JuliaMono:h13
+set guifont=JuliaMono:h14
 set number
 set autoread
 set tabstop=4
@@ -31,7 +42,7 @@ set relativenumber
 set encoding=utf-8
 
 syntax on
-colorscheme Light
+colorscheme paramount
 
 " ------------------- vim-go.vim configuration --------------------
 " use golang language server
@@ -68,7 +79,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
  " Remap for rename current word
-nmap <space>rn <Plug>(coc-rename) 
+nmap <leader>rn <Plug>(coc-rename) 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -113,11 +124,18 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 "Vimspector configuration
+
 nmap <leader>dd :call vimspector#Launch()<CR>
 nmap <leader>dx :VimspectorReset<CR>
 nmap <leader>de :VimspectorEval
 nmap <leader>dw :VimspectorWatch
 nmap <leader>do :VimspectorShowOutput
+
+let g:vimspector_enable_mappings = 'HUMAN'
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
 
 "Personal shortcuts
 nmap <silent> nt :NERDTreeFind<CR>
@@ -125,4 +143,5 @@ nmap <silent> s :w<CR>
 nmap <silent>rr ciw
 nmap <silent>cc :CtrlP<CR>
 nmap <silent>bb :e#<CR>
-nmap <silent>ff :Files<CR> 
+nmap <silent>ff :Files<CR>
+nmap <leader>p "+p
