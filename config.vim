@@ -8,22 +8,21 @@ Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-
 Plug 'szw/vim-maximizer'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 " themes requirements...
-Plug 'alessandroyorba/alduin'
-Plug 'ajh17/spacegray.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'tomasr/molokai'
-Plug 'severij/vadelma'
-Plug 'flazz/vim-colorschemes'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'spacevim/spacevim'
-Plug 'fcpg/vim-orbital'
 Plug 'christophermca/meta5'
 Plug 'owickstrom/vim-colors-paramount'
-Plug 'cocopon/iceberg.vim'
-
+Plug 'sainnhe/sonokai'
+Plug 'cseelus/vim-colors-lucid' 
+Plug 'arzg/vim-colors-xcode'
+Plug 'victorze/foo'
+Plug 'yuttie/inkstained-vim'
+Plug 'https://github.com/kkga/vim-envy'
+Plug 'https://github.com/asenchi/whitespace-vim'
+Plug 'https://github.com/jeetsukumaran/vim-nefertiti'
+Plug 'https://github.com/gtr/rza'
+Plug 'https://github.com/sainnhe/everforest'
 
 " telescope requirements...
 " Plug 'nvim-lua/popup.nviml'
@@ -33,7 +32,6 @@ Plug 'cocopon/iceberg.vim'
 call plug#end()
 
 "Vim interface settings
-set guifont=JuliaMono:h14
 set number
 set autoread
 set tabstop=4
@@ -42,7 +40,8 @@ set relativenumber
 set encoding=utf-8
 
 syntax on
-colorscheme paramount
+colorscheme xcodelight
+set guifont=InconsolataGo_Nerd_Font_Mono:h16
 
 " ------------------- vim-go.vim configuration --------------------
 " use golang language server
@@ -70,22 +69,16 @@ let g:netrw_list_hide= '.*\.swp$,\~$,\.orig$'
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
-" Better display for messages
 set cmdheight=2
-" Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
-" don't give |ins-completion-menu| messages.
 set shortmess+=c
-" always show signcolumns
 set signcolumn=yes
  " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename) 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 "if has("gui_macvim")
@@ -94,6 +87,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Size tab for every lang
 autocmd filetype javascript setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd filetype dart setloca shiftwidth=2 tabstop=2 expandtab
 autocmd filetype typescript setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd filetype php setlocal shiftwidth=4 tabstop=4 expandtab
 
@@ -111,19 +105,12 @@ map g/ <Plug>(incsearch-stay)
 " Using CocList
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-"Vimspector configuration
 
 nmap <leader>dd :call vimspector#Launch()<CR>
 nmap <leader>dx :VimspectorReset<CR>
@@ -132,9 +119,7 @@ nmap <leader>dw :VimspectorWatch
 nmap <leader>do :VimspectorShowOutput
 
 let g:vimspector_enable_mappings = 'HUMAN'
-" for normal mode - the word under the cursor
 nmap <Leader>di <Plug>VimspectorBalloonEval
-" for visual mode, the visually selected text
 xmap <Leader>di <Plug>VimspectorBalloonEval
 
 "Personal shortcuts
