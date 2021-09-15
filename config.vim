@@ -11,18 +11,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
 " themes requirements...
-Plug 'christophermca/meta5'
 Plug 'owickstrom/vim-colors-paramount'
-Plug 'sainnhe/sonokai'
-Plug 'cseelus/vim-colors-lucid' 
 Plug 'arzg/vim-colors-xcode'
-Plug 'victorze/foo'
-Plug 'yuttie/inkstained-vim'
-Plug 'https://github.com/kkga/vim-envy'
-Plug 'https://github.com/asenchi/whitespace-vim'
-Plug 'https://github.com/jeetsukumaran/vim-nefertiti'
-Plug 'https://github.com/gtr/rza'
-Plug 'https://github.com/sainnhe/everforest'
+Plug 'https://github.com/morhetz/gruvbox'
+Plug 'https://github.com/altercation/vim-colors-solarized'
+Plug 'https://github.com/mcchrish/zenbones.nvim'
+Plug 'kyazdani42/blue-moon'
+Plug 'https://github.com/mrkn/mrkn256.vim'
 
 " telescope requirements...
 " Plug 'nvim-lua/popup.nviml'
@@ -40,8 +35,12 @@ set relativenumber
 set encoding=utf-8
 
 syntax on
-colorscheme xcodelight
-set guifont=InconsolataGo_Nerd_Font_Mono:h16
+colorscheme zenbones
+"set background=light
+set guifont=agave:h14
+set linespace=1
+let g:solarized_termcolors=256
+set cursorline
 
 " ------------------- vim-go.vim configuration --------------------
 " use golang language server
@@ -64,7 +63,7 @@ let g:go_auto_type_info = 1
 let g:go_def_mapping_enabled = 1
 let NERDTreeShowHidden=1
 " -------------------- vim-go.vim configuration finished --------------------
-let g:netrw_list_hide= '.*\.swp$,\~$,\.orig$'
+let g:netrw_list_hide= '.*\.swp$,\~$,\.orig$\.DS_Store$'
 
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -81,15 +80,17 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-"if has("gui_macvim")
+if has("gui_macvim")
 "    let macvim_hig_shift_movement = 1
-"endif
+    inoremap <silent><expr> <c-space> coc#refresh()
+endif
 
 " Size tab for every lang
 autocmd filetype javascript setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd filetype dart setloca shiftwidth=2 tabstop=2 expandtab
 autocmd filetype typescript setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd filetype php setlocal shiftwidth=4 tabstop=4 expandtab
+
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -121,6 +122,11 @@ nmap <leader>do :VimspectorShowOutput
 let g:vimspector_enable_mappings = 'HUMAN'
 nmap <Leader>di <Plug>VimspectorBalloonEval
 xmap <Leader>di <Plug>VimspectorBalloonEval
+
+imap <tab> <Plug> (coc-snippets-expand)
+let g:UltilSnipsExpandTrigger = '<Nop>'
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
 
 "Personal shortcuts
 nmap <silent> nt :NERDTreeFind<CR>
