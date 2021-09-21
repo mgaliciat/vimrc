@@ -1,4 +1,5 @@
 set t_Co=256
+set encoding=UTF-8
 
 call plug#begin('~/.vim/plugged')
 
@@ -9,17 +10,17 @@ Plug 'szw/vim-maximizer'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'ryanoasis/vim-devicons'
 
 " themes requirements...
-Plug 'owickstrom/vim-colors-paramount'
 Plug 'arzg/vim-colors-xcode'
 Plug 'https://github.com/morhetz/gruvbox'
-Plug 'https://github.com/altercation/vim-colors-solarized'
 Plug 'https://github.com/mcchrish/zenbones.nvim'
-Plug 'kyazdani42/blue-moon'
 Plug 'https://github.com/mrkn/mrkn256.vim'
+Plug 'cocopon/iceberg.vim'
 
 " telescope requirements...
+"
 " Plug 'nvim-lua/popup.nviml'
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'nvim-telescope/telescope.nvim'
@@ -35,12 +36,12 @@ set relativenumber
 set encoding=utf-8
 
 syntax on
-colorscheme zenbones
-"set background=light
-set guifont=agave:h14
+colorscheme iceberg
+" set background=light
+set guifont=DejaVuSansMono_Nerd_Font_Mono:h14
+" set guifont=FantasqueSansMono_Nerd_Font:h15 
 set linespace=1
 let g:solarized_termcolors=256
-set cursorline
 
 " ------------------- vim-go.vim configuration --------------------
 " use golang language server
@@ -62,8 +63,12 @@ let g:go_auto_type_info = 1
 " disable gd mapping of vim-go
 let g:go_def_mapping_enabled = 1
 let NERDTreeShowHidden=1
+
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
+let NERDTreeRespectWildIgnore=1
+
 " -------------------- vim-go.vim configuration finished --------------------
-let g:netrw_list_hide= '.*\.swp$,\~$,\.orig$\.DS_Store$'
+let g:netrw_list_hide= '.*\.swp$,\~$,\.orig$\.DS_Store'
 
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -123,10 +128,6 @@ let g:vimspector_enable_mappings = 'HUMAN'
 nmap <Leader>di <Plug>VimspectorBalloonEval
 xmap <Leader>di <Plug>VimspectorBalloonEval
 
-imap <tab> <Plug> (coc-snippets-expand)
-let g:UltilSnipsExpandTrigger = '<Nop>'
-let g:coc_snippet_next = '<TAB>'
-let g:coc_snippet_prev = '<S-TAB>'
 
 "Personal shortcuts
 nmap <silent> nt :NERDTreeFind<CR>
