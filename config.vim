@@ -77,6 +77,9 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+
+let g:coc_global_extensions = [ 'coc-json', 'coc-git', 'coc-go', 'coc-yaml', 'coc-json', 'coc-vimlsp', 'coc-rome', 'coc-solargraph' ]
+
  " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename) 
 vmap <leader>a  <Plug>(coc-codeaction-selected)
