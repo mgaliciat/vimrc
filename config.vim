@@ -17,7 +17,6 @@ Plug 'arzg/vim-colors-xcode'
 Plug 'https://github.com/morhetz/gruvbox'
 Plug 'https://github.com/mcchrish/zenbones.nvim'
 Plug 'https://github.com/mrkn/mrkn256.vim'
-Plug 'cocopon/iceberg.vim'
 
 " telescope requirements...
 "
@@ -36,9 +35,9 @@ set relativenumber
 set encoding=utf-8
 
 syntax on
-colorscheme iceberg
+colorscheme xcodedark
 " set background=light
-set guifont=DejaVuSansMono_Nerd_Font_Mono:h14
+set guifont=Hack:h14
 " set guifont=FantasqueSansMono_Nerd_Font:h15 
 set linespace=1
 let g:solarized_termcolors=256
