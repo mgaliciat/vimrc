@@ -10,19 +10,16 @@ Plug 'szw/vim-maximizer'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ryanoasis/vim-devicons'
+Plug 'christophermca/meta5'
+Plug 'lambdalisue/fern.vim'
+
 
 " themes requirements...
 Plug 'arzg/vim-colors-xcode'
-Plug 'https://github.com/morhetz/gruvbox'
-Plug 'https://github.com/mcchrish/zenbones.nvim'
 Plug 'https://github.com/mrkn/mrkn256.vim'
+Plug '4513ECHO/vim-colors-hatsunemiku'
 
-" telescope requirements...
-"
-" Plug 'nvim-lua/popup.nviml'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -31,16 +28,17 @@ set number
 set autoread
 set tabstop=4
 set shiftwidth=4
-set relativenumber
 set encoding=utf-8
 
 syntax on
-colorscheme xcodedark
+" Asegúrese de que airline esté habilitado
+colorscheme hatsunemiku
+
 " set background=light
-set guifont=Hack:h14
+set guifont=FiraMono_Nerd_Font_Propo:h15
 " set guifont=FantasqueSansMono_Nerd_Font:h15 
 set linespace=1
-let g:solarized_termcolors=256
+
 
 " ------------------- vim-go.vim configuration --------------------
 " use golang language server
@@ -76,8 +74,10 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+let g:fern#renderer#ctime_format = '%Y/%m/%d %H:%M:%S'
 
-let g:coc_global_extensions = [ 'coc-json', 'coc-git', 'coc-go', 'coc-yaml', 'coc-json', 'coc-vimlsp', 'coc-rome', 'coc-solargraph' ]
+let g:coc_global_extensions = [ 'coc-json', 'coc-git', 'coc-go', 'coc-yaml', 'coc-json', 'coc-vimlsp', 'coc-rome', 'coc-solargraph', 'coc-tsserver' ]
 
  " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename) 
@@ -139,3 +139,12 @@ nmap <silent>cc :CtrlP<CR>
 nmap <silent>bb :e#<CR>
 nmap <silent>ff :Files<CR>
 nmap <leader>p "+p
+nnoremap <leader>f :Fern .<CR>
+
+
+" Habilitar copiar y pegar con CMD+C y CMD+V solo en macOS
+if has('macunix')
+    map <D-c> "+y
+    map <D-v> "+p
+    imap <D-v> <Esc>"+pa
+endif
